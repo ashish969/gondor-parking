@@ -1,0 +1,67 @@
+spring:
+  application:
+    name: parking-service
+  datasource:
+    password: admin
+    testWhileIdle: true
+    url: jdbc:mysql://192.168.99.100:3307/parking?verifyServerCertificate=false&useSSL=true&createDatabaseIfNotExist=true
+    username: admin
+    validationQuery: SELECT 1
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL57Dialect
+    show-sql: true
+  jackson:
+    serialization:
+      indent_output: true
+  boot:
+    admin:
+      client:
+        instance:
+          metadata:
+            user:
+              name: ${spring.security.user.name}
+              password: ${spring.security.user.password}
+        password: admin
+        url: http://localhost:8302/admin
+        username: admin
+  security:
+    user:
+      name: client
+      password: client
+
+server:
+  port: 8304
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 5
+    leaseExpirationDurationInSeconds: 2
+  client:
+    healthcheck:
+      enabled: true
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8301/eureka
+    lease:
+      duration: 5
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+parkinglot-service:
+  ribbon:
+    eureka:
+      enabled: false
+    listOfServers: localhost:8303
+    ServerListRefreshInterval: 15000
+#logging:
+#  level:
+#    root: debug
