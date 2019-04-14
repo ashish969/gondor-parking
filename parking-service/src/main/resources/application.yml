@@ -62,6 +62,30 @@ parkinglot-service:
       enabled: false
     listOfServers: localhost:8303
     ServerListRefreshInterval: 15000
+
+ribbon:
+  ConnectTimeout: 5000
+  ReadTimeout: 5000
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 15000
+      fallback:
+        enabled: false
+      circuitBreaker:
+        enabled: false
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+  hystrix:
+    enabled: false
 #logging:
 #  level:
 #    root: debug
