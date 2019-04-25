@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface ParkingSSR {
 
-    ParkingSpaceDTO findNearestSlot(List<Parking> parkings, List<Floor> floors, BigInteger parkingLotId);
+    ParkingSpaceDTO findNearestSlot(List<Parking> parkings, List<Floor> floors);
 }

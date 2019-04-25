@@ -63,7 +63,7 @@ public class ParkingServiceImpl implements ParkingService {
         List<Floor> floors = parkingLotProxy.getParkingLotById(parkingRequest.getParkingLotId()).getFloorList();
         Optional<List<Parking>> parkings = parkingRepository.findByParkingLotIdAndEndTimeGreaterThan(parkingRequest.getParkingLotId(), new Date().getTime());
         ParkingSSR parkingSSR = SSRFactory.getParkingSSR(ssr);
-        ParkingSpaceDTO parkingSpaceDTO = parkingSSR.findNearestSlot(parkings.orElse(new ArrayList<>()), floors, parkingRequest.getParkingLotId());
+        ParkingSpaceDTO parkingSpaceDTO = parkingSSR.findNearestSlot(parkings.orElse(new ArrayList<>()), floors);
         if (parkingSpaceDTO == null) {
             throw new ParkingFullException("No Parking Found");
         }

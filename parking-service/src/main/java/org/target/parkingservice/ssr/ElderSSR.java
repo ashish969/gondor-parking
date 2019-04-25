@@ -14,7 +14,7 @@ import static org.target.parkingservice.util.ParkingHelper.*;
 public class ElderSSR implements ParkingSSR {
 
     @Override
-    public ParkingSpaceDTO findNearestSlot(List<Parking> parkings, List<Floor> floors, BigInteger parkingLotId) {
+    public ParkingSpaceDTO findNearestSlot(List<Parking> parkings, List<Floor> floors) {
         for (Floor floor : floors) {
             List<Parking> parkingsOnFloor = getAllParkingOnFloor(parkings, floor.getFloorNumber());
             Set<ParkingSpace> allParkingSpaceFromParking = getAllParkingSpaceFromParking(parkingsOnFloor);
